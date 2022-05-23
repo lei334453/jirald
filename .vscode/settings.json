@@ -1,0 +1,12 @@
+{
+    "reactSnippets.settings.prettierEnabled": true,
+    "prettier.arrowParens": "avoid",
+    "prettier.enableDebugLogs": true,
+    "prettier.insertPragma": true,
+    "prettier.jsxBracketSameLine": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.singleQuote": true,
+    "prettier.semi": false,
+    "prettier.vueIndentScriptAndStyle": true,
+    "bookmarks.useWorkaroundForFormatters": false
+}
