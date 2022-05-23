@@ -8,8 +8,9 @@
 import React,{useState,useEffect} from 'react';
 import { List } from './List';
 import { SearchPanel } from './search-panel';
-import {cleanObject} from '../../utils/clean'
+import {cleanObject,useMount} from '../../utils/clean'
 import * as qs from 'qs'
+import {useDebounce} from '../../utils/delay'
 const apiUrl=process.env.REACT_APP_API_URL
 export const ProjectListScreen = () => {
     // eslint-disable-next-line no-unused-vars
@@ -20,6 +21,9 @@ export const ProjectListScreen = () => {
         name: "",
         personId: ''
     })
+    //防抖函数
+    const debounce=useDebounce(param,2000);
+
     {/* console.log(apiUrl) */}
     useEffect(() => {
       fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(param))}`)
@@ -28,17 +32,18 @@ export const ProjectListScreen = () => {
               setList(await response.json())
           }
       })
-    }, [param])
-      useEffect(() => {
+    }, [debounce])
+      useMount(() => {
       fetch(`${apiUrl}/users`).then(async response=>{
           if(response.ok){
               setUsers(await response.json())
           }
+        })
       })
-    }, [])
-    return (<div>
-        <SearchPanel users={users} param={param} setParam={setParam}/>
-        <List users={users} list={list}/>
+    return (
+        <div>
+            <SearchPanel users={users} param={param} setParam={setParam}/>
+            <List users={users} list={list}/>
         </div>
     )
 }
