@@ -1,9 +1,3 @@
-/**
- *
- * @param {*} func 防抖 最后执行
- * @param {*} delay
- * @returns
- */
 // const debounce = (func, delay) => {
 //     let timeout;
 //     return (...param) => {
@@ -19,8 +13,10 @@
 // log()
 // log()
 // log()
-import { useState, useEffect } from "react";
-export const useDebounce = (value, delay) => {
+import { useEffect, useState } from "react";
+
+//后面用泛型
+export const useDebounce = <V>(value: V, delay?: number) => {
   const [debounce, setDebounceValue] = useState(value);
   useEffect(() => {
     //value 变化设置一个定时器
