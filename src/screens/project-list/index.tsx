@@ -1,8 +1,11 @@
-import * as qs from "qs";
+/*
+ * @edu-class-demo: personal
+ */
 import React, { useEffect, useState } from "react";
 
 import { cleanObject, useMount } from "../../utils/clean";
 import { useDebounce } from "../../utils/delay";
+import { useHttp } from "../../utils/httpclient";
 import { List } from "./List";
 import { SearchPanel } from "./search-panel";
 
@@ -18,21 +21,24 @@ export const ProjectListScreen = () => {
   //防抖函数
   const debounce = useDebounce(param, 2000);
 
+  const client = useHttp();
   useEffect(() => {
-    fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(debounce))}`).then(
-      async (response) => {
-        if (response.ok) {
-          setList(await response.json());
-        }
-      }
-    );
+    client("projects", { data: cleanObject(debounce) }).then(setList);
+    // fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(debounce))}`).then(
+    //   async (response) => {
+    //     if (response.ok) {
+    //       setList(await response.json());
+    //     }
+    //   }
+    // );
   }, [debounce]);
   useMount(() => {
-    fetch(`${apiUrl}/users`).then(async (response) => {
-      if (response.ok) {
-        setUsers(await response.json());
-      }
-    });
+    client("users").then(setUsers);
+    // fetch(`${apiUrl}/users`).then(async (response) => {
+    //   if (response.ok) {
+    //     setUsers(await response.json());
+    //   }
+    // });
   });
   return (
     <div>
