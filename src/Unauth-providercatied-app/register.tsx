@@ -1,31 +1,23 @@
 /*
  * @edu-class-demo: personal
  */
+/*
+ * @edu-class-demo: personal
+ */
+import { useAuth } from "context/auth-context";
 import React, { FormEvent } from "react";
 
-const apiUrl = process.env.REACT_APP_API_URL;
-export const LoginScreen = () => {
-  //HTMLFormElement extends element
-  const login = (param: { username: string; password: string }) => {
-    fetch(`${apiUrl}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(param),
-    }).then(async (response: Response) => {
-      if (response.ok) {
-        //   console.log('登陆成功');
-      }
-    });
-  };
+// const apiUrl = process.env.REACT_APP_API_URL;
+export const RegisterScreen = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { register, user } = useAuth();
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const username = (event.currentTarget.elements[0] as HTMLInputElement)
       .value;
     const password = (event.currentTarget.elements[1] as HTMLInputElement)
       .value;
-    login({ username, password });
+    register({ username, password });
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -38,7 +30,7 @@ export const LoginScreen = () => {
         <input type="password" id="password" placeholder="" />
       </div>
       <button type="submit" id="login">
-        登录
+        注册
       </button>
     </form>
   );

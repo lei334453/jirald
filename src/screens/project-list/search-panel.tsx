@@ -1,6 +1,9 @@
 /*
  * @edu-class-demo: personal
  */
+/*
+ * @edu-class-demo: personal
+ */
 import React from "react";
 
 export interface User {
@@ -9,6 +12,7 @@ export interface User {
   email: string;
   title: string;
   organization: string;
+  token: string;
 }
 interface SearchPanelProp {
   users: User[];

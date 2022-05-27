@@ -1,22 +1,16 @@
-/*
- * @edu-class-demo: personal
- */
-/*
- * @edu-class-demo: personal
- */
-/*
- * @edu-class-demo: personal
- */
+import "App.css";
+
 import React from "react";
+import { UnauthtivcaltedApp } from "Unauth-providercatied-app";
 
-import { LoginScreen } from "./screens/login";
+import { AuthenticaledApp } from "./authprovideited-app";
+import { useAuth } from "./context/auth-context";
 
-// import { ProjectListScreen } from 'screens/project-list';
-const App: React.FC = () => {
+export const App: React.FC = () => {
+  const { user } = useAuth();
   return (
     <div className="App">
-      {/* <ProjectListScreen /> */}
-      <LoginScreen />
+      {user ? <AuthenticaledApp /> : <UnauthtivcaltedApp />}
     </div>
   );
 };
