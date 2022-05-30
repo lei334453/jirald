@@ -1,12 +1,7 @@
-/*
- * @edu-class-demo: personal
- */
-/*
- * @edu-class-demo: personal
- */
 import "./index.css";
 
 import { loadDevTools } from "jira-dev-tool";
+import "antd/dist/antd.less";
 import React from "react";
 import ReactDOM from "react-dom/client";
 

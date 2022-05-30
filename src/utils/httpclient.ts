@@ -47,3 +47,19 @@ export const useHttp = () => {
   return (...[endpoint, config]: Parameters<typeof http>) =>
     http(endpoint, { ...config, token: user?.token });
 };
+// interface 也没法实现 Utility方
+// typeof
+// js中的typeof是runtime在运行时
+// type Person={
+//   name:string;
+//   age:number;
+// }
+// const xiaoMing:Partial<Person>={
+// }
+// const shengming:Omit<Person,'name'|'age'>={
+// }
+
+// type PersonKeys=keyof Person;
+// type Partial<T> = {
+//   [P in keyof T]?: T[P];
+// };
